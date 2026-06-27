@@ -4,7 +4,7 @@ export const profile = {
   myself: {
     name: "Brijes Pansuriya",
     dob: "11 · 06 · 2002",
-    height: "5'6\"",
+    height: "5'7\"",
     weight: "59 Kg",
   },
   education: [
@@ -41,8 +41,8 @@ export const profile = {
     address: ["D/1003 Apple Heights, Opp. Westside,", "Mota Varachha, Surat"],
   },
   socials: {
-    instagram: "https://instagram.com",
-    linkedin: "https://linkedin.com",
+    instagram: "https://www.instagram.com/brijes_jd",
+    linkedin: "https://www.linkedin.com/in/brijes-pansuriya",
     website: "https://brijespansuriya.com",
   },
 };
