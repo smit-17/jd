@@ -2,12 +2,12 @@ import { motion } from "motion/react";
 import { LetterReveal, Reveal } from "./Reveal";
 import { PhotoCarousel } from "./PhotoCarousel";
 import { profile } from "./data";
-import brijesOffice from "../assets/Image_2.jpeg";
-import brijesStage from "../assets/Image_4.jpeg";
+// import brijesOffice from "../assets/Image_2.jpeg";
+// import brijesStage from "../assets/Image_4.jpeg";
 
 const images = [
-  { src: brijesOffice, alt: "Brijes Pansuriya at the LEPDO office" },
-  { src: brijesStage, alt: "Brijes Pansuriya presenting at a BNI Quantum event" },
+  { src: '', alt: "Brijes Pansuriya at the LEPDO office" },
+  { src: '', alt: "Brijes Pansuriya presenting at a BNI Quantum event" },
 ];
 
 export function Hero() {
