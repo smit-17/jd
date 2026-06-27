@@ -7,7 +7,7 @@ import Image_4 from "../assets/Image_4.jpeg";
 
 const images = [
   { src: Image_2, alt: "Brijes Pansuriya at the LEPDO office" },
-  { src: Image_4, alt: "Brijes Pansuriya presenting at a BNI Quantum event" },
+  { src: Image_4, alt: "Brijes Pansuriya presenting at a BNI Quantum events" },
 ];
 
 export function Hero() {
