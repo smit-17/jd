@@ -19,7 +19,7 @@ export function Hero() {
       </header>
 
       <div className="mt-12 grid items-center gap-12 lg:mt-16 lg:grid-cols-[0.9fr_1.1fr]">
-        <Reveal y={40} delay={0.25}>
+        <Reveal y={40} delay={0.15}>
           <div className="float-mobile [will-change:transform]">
             <PhotoCarousel images={images} />
           </div>

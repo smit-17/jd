@@ -74,7 +74,7 @@ export function PhotoCarousel({ images }: { images: { src: string; alt: string }
             initial={{ opacity: 0, scale: 1.12 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 1.04 }}
-            transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             className="absolute inset-0 overflow-hidden"
             style={{ borderRadius: "1.6rem" }}
           >
