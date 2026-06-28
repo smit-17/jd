@@ -2,8 +2,8 @@ import { motion } from "motion/react";
 import { LetterReveal, Reveal } from "./Reveal";
 import { PhotoCarousel } from "./PhotoCarousel";
 import { profile } from "./data";
-import Image_2 from "../assets/Image_2.jpeg";
-import Image_4 from "../assets/Image_4.png";
+import Image_2 from "../assets/Image_2.jpg";
+import Image_4 from "../assets/Image_4.jpg";
 
 const images = [
   { src: Image_2, alt: "Brijes Pansuriya at the LEPDO office" },
@@ -19,7 +19,7 @@ export function Hero() {
       </header>
 
       <div className="mt-12 grid items-center gap-12 lg:mt-16 lg:grid-cols-[0.9fr_1.1fr]">
-        <Reveal y={40} delay={0.15}>
+        <Reveal y={40} delay={0.25}>
           <div className="float-mobile [will-change:transform]">
             <PhotoCarousel images={images} />
           </div>
