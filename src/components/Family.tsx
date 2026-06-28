@@ -18,7 +18,7 @@ function Field({ label, value, sub, dark }: { label: string; value: string; sub?
 export function Family() {
   const { jd, maternal } = profile.family;
   return (
-    <section className="relative overflow-hidden bg-forest py-24 text-cream">
+    <section className="relative overflow-hidden bg-forest py-20 text-cream">
       <div
         aria-hidden
         className="float-slower absolute right-[-6rem] top-10 h-80 w-80 rounded-full blur-3xl"
@@ -49,8 +49,7 @@ export function Family() {
           <div className="grid items-center gap-10 lg:grid-cols-3">
             {/* Left */}
             <div>
-              <Eyebrow>Maternal Family</Eyebrow>
-              <h3 className="mt-4 font-display text-[clamp(2rem,5vw,3.4rem)] font-black uppercase leading-[0.9] tracking-[-0.01em] text-cream">
+              <h3 className="font-display text-[clamp(2rem,5vw,3.4rem)] font-black uppercase leading-[0.9] tracking-[-0.01em] text-cream">
                 <LetterReveal lines={["Maternal", "Family"]} />
               </h3>
             </div>
@@ -71,7 +70,7 @@ export function Family() {
 
 export function AboutMe() {
   return (
-    <section className="relative mx-auto max-w-4xl px-6 py-28 text-center md:px-12">
+    <section className="relative mx-auto max-w-4xl overflow-x-clip px-6 py-24 text-center md:px-12">
       <Eyebrow className="flex justify-center">Chapter 04</Eyebrow>
       <h2 className="mt-4 font-display text-[clamp(2.5rem,7vw,5rem)] font-black tracking-[-0.02em] text-ink">
         <LetterReveal lines={["About Me"]} />

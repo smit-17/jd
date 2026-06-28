@@ -22,7 +22,7 @@ function DiamondPattern() {
 
 export function Occupation() {
   return (
-    <section className="relative mx-auto max-w-[1400px] px-6 py-20 md:px-12">
+    <section className="relative mx-auto max-w-[1400px] overflow-x-clip px-6 py-16 md:px-12">
       <Reveal>
         <div className="relative overflow-hidden rounded-3xl bg-forest px-6 py-14 text-cream md:px-14 md:py-20">
           <DiamondPattern />
@@ -75,11 +75,11 @@ export function Occupation() {
 
 const styleFor = (i: number) => {
   const variants = [
-    "text-[clamp(3rem,12vw,9rem)] font-black text-ink",
-    "text-[clamp(2.2rem,8vw,6rem)] font-semibold text-forest font-serif italic",
-    "text-[clamp(3rem,13vw,10rem)] font-black text-ink",
-    "text-[clamp(2rem,7vw,5.5rem)] font-serif italic text-gold",
-    "text-[clamp(2.4rem,9vw,7rem)] font-black text-forest",
+    "text-[clamp(2.6rem,11vw,9rem)] font-black text-ink",
+    "text-[clamp(2rem,7vw,6rem)] font-semibold text-forest font-serif italic",
+    "text-[clamp(1.9rem,8.5vw,10rem)] font-black text-ink",
+    "text-[clamp(1.9rem,6.5vw,5.5rem)] font-serif italic text-gold",
+    "text-[clamp(2.2rem,8vw,7rem)] font-black text-forest",
   ];
   return variants[i % variants.length];
 };
@@ -88,18 +88,18 @@ const aligns = ["justify-start", "justify-end", "justify-center", "justify-end",
 
 export function Hobbies() {
   return (
-    <section className="relative mx-auto max-w-[1400px] overflow-hidden px-6 py-24 md:px-12">
+    <section className="relative mx-auto flex min-h-[88vh] max-w-[1400px] flex-col justify-center overflow-x-clip px-6 py-20 md:min-h-0 md:py-20 md:px-12">
       <Eyebrow>Interests</Eyebrow>
-      <div className="mt-10 space-y-2 md:space-y-4">
+      <div className="mt-12 flex flex-1 flex-col justify-center space-y-10 md:mt-10 md:flex-none md:space-y-4">
         {profile.hobbies.map((h, i) => (
           <Reveal key={h} delay={i * 0.06} y={36}>
             <motion.div
               className={`flex ${aligns[i % aligns.length]}`}
-              animate={{ y: [0, i % 2 === 0 ? -10 : 10, 0] }}
-              transition={{ duration: 6 + i, ease: "easeInOut", repeat: Infinity }}
+              animate={{ y: [0, i % 2 === 0 ? -16 : 16, 0] }}
+              transition={{ duration: 5 + i, ease: "easeInOut", repeat: Infinity }}
             >
               <span
-                className={`lux-line cursor-default font-display uppercase leading-[0.9] tracking-[-0.02em] transition-all duration-500 hover:tracking-[0.02em] ${styleFor(
+                className={`lux-line cursor-default font-display uppercase leading-[0.9] tracking-[0.01em] transition-all duration-500 hover:tracking-[0.04em] ${styleFor(
                   i,
                 )}`}
               >

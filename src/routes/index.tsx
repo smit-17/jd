@@ -27,7 +27,7 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <main className="relative min-h-screen bg-background">
+    <main className="relative min-h-screen overflow-x-clip bg-background">
       {/* slow moving background texture */}
       <div aria-hidden className="texture-bg pointer-events-none fixed inset-0 -z-10 opacity-70" />
       <CursorGlow />

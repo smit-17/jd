@@ -24,7 +24,7 @@ export function Myself() {
     ["Weight", profile.myself.weight],
   ];
   return (
-    <section className="relative mx-auto max-w-[1400px] px-6 py-24 md:px-12">
+    <section className="relative mx-auto max-w-[1400px] overflow-x-clip px-6 py-20 md:px-12">
       <div className="grid gap-14 lg:grid-cols-2 lg:gap-20">
         <ChapterTitle n="01" title="Myself" />
         <div className="lg:pt-4">
@@ -46,7 +46,7 @@ export function Myself() {
 
 export function Professional() {
   return (
-    <section className="relative mx-auto max-w-[1400px] px-6 py-20 md:px-12">
+    <section className="relative mx-auto max-w-[1400px] overflow-x-clip px-6 py-16 md:px-12">
       <div className="flex items-end justify-between">
         <Eyebrow>Chapter 02</Eyebrow>
         <Reveal delay={0.1}>

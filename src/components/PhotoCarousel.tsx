@@ -53,20 +53,21 @@ export function PhotoCarousel({ images }: { images: { src: string; alt: string }
         className="absolute -inset-3 -z-10 rounded-[2rem] blur-2xl"
         style={{ background: "radial-gradient(60% 60% at 50% 70%, color-mix(in oklab, var(--forest) 26%, transparent), transparent)" }}
       />
+      <div className="relative aspect-[5/6] w-full overflow-hidden rounded-[1.6rem]" style={{ borderRadius: "1.6rem" }}>
       <div
         ref={containerRef}
         onMouseMove={onMove}
         onMouseLeave={() => setParallax({ x: 0, y: 0 })}
         onTouchStart={onTouchStart}
         onTouchEnd={onTouchEnd}
-        className="group relative aspect-[5/6] w-full overflow-hidden rounded-[1.6rem] bg-forest/5 shadow-[0_40px_90px_-30px_color-mix(in_oklab,var(--forest)_55%,transparent)] ring-1 ring-gold/25 transition-transform duration-300 ease-out [will-change:transform]"
-        style={{ transform: `rotateY(${parallax.x * 0.5}deg) rotateX(${-parallax.y * 0.5}deg)` }}
+        className="group relative aspect-[5/6] w-full touch-pan-y select-none bg-forest/5 shadow-[0_40px_90px_-30px_color-mix(in_oklab,var(--forest)_55%,transparent)] ring-1 ring-gold/25 transition-transform duration-300 ease-out [will-change:transform]"
+        style={{ transform: `rotateY(${parallax.x * 0.5}deg) rotateX(${-parallax.y * 0.5}deg)`, touchAction: "pan-y" }}
       >
         {/* luxury frame */}
         <div className="pointer-events-none absolute inset-3 z-20 rounded-[1.1rem] border border-gold/40 mix-blend-overlay" />
         <div className="pointer-events-none absolute inset-0 z-20 rounded-[1.6rem] ring-1 ring-inset ring-cream/10" />
 
-        <AnimatePresence initial={false} mode="popLayout" custom={dir}>
+        <AnimatePresence initial={false} mode="wait" custom={dir}>
           <motion.div
             key={index}
             custom={dir}
@@ -74,7 +75,8 @@ export function PhotoCarousel({ images }: { images: { src: string; alt: string }
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 1.04 }}
             transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute inset-0"
+            className="absolute inset-0 overflow-hidden"
+            style={{ borderRadius: "1.6rem" }}
           >
             <motion.img
               src={images[index].src}
@@ -115,6 +117,7 @@ export function PhotoCarousel({ images }: { images: { src: string; alt: string }
             </button>
           </div>
         )}
+      </div>
       </div>
 
       {/* dots */}

@@ -1,8 +1,9 @@
 import { motion } from "motion/react";
 import { Globe, Instagram, Linkedin, Phone } from "lucide-react";
-import { Eyebrow, LetterReveal, Reveal } from "./Reveal";
+import { Eyebrow, Reveal } from "./Reveal";
 import { Magnetic } from "./Decor";
 import { profile } from "./data";
+import JD_SIGN from "@/assets/JD_SIGN.png";
 
 function Particles() {
   const dots = Array.from({ length: 14 });
@@ -30,10 +31,40 @@ function Particles() {
   );
 }
 
+/** "THANK YOU" with a reveal entrance and a subtle continuous per-letter float. */
+function ThankYouLetters({ text }: { text: string }) {
+  return (
+    <motion.span
+      aria-label={text}
+      className="inline-block whitespace-nowrap"
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, margin: "-10% 0px" }}
+      variants={{ hidden: {}, show: { transition: { staggerChildren: 0.05, delayChildren: 0.1 } } }}
+    >
+      {Array.from(text).map((ch, i) => (
+        <span key={i} className="inline-block overflow-hidden align-bottom" style={{ whiteSpace: ch === " " ? "pre" : "normal" }}>
+          <motion.span
+            className="inline-block"
+            variants={{
+              hidden: { y: "110%", opacity: 0 },
+              show: { y: "0%", opacity: 1, transition: { duration: 0.85, ease: [0.16, 1, 0.3, 1] } },
+            }}
+          >
+            <span className="letter-float" style={{ animationDelay: `${i * 0.18}s` }}>
+              {ch === " " ? "\u00A0" : ch}
+            </span>
+          </motion.span>
+        </span>
+      ))}
+    </motion.span>
+  );
+}
+
 export function Contact() {
   const { phones, website, address } = profile.contact;
   return (
-    <section className="relative mx-auto max-w-[1400px] px-6 pb-10 pt-20 text-center md:px-12">
+    <section className="relative mx-auto max-w-[1400px] overflow-x-clip px-6 pb-10 pt-16 text-center md:px-12">
       <Eyebrow className="flex justify-center">Contact Details</Eyebrow>
 
       <div className="mt-12 grid gap-12 md:grid-cols-3">
@@ -91,7 +122,7 @@ export function ThankYou() {
     { Icon: Globe, href: profile.socials.website, label: "Website" },
   ];
   return (
-    <footer className="relative overflow-hidden py-24 text-center">
+    <footer className="relative overflow-hidden py-20 text-center">
       <Particles />
       <div className="relative mx-auto max-w-[1400px] px-6">
         <div className="mx-auto mb-12 h-px w-full max-w-5xl bg-border" />
@@ -103,7 +134,7 @@ export function ThankYou() {
             style={{ background: "radial-gradient(circle, color-mix(in oklab, var(--gold) 30%, transparent), transparent 70%)" }}
           />
           <h2 className="name-glow font-display font-black uppercase leading-[0.85] tracking-[-0.03em] text-forest text-[clamp(3rem,12vw,10rem)]">
-            <LetterReveal lines={["THANK YOU"]} />
+            <ThankYouLetters text="THANK YOU" />
           </h2>
         </div>
 
@@ -134,9 +165,18 @@ export function ThankYou() {
           ))}
         </div>
 
-        <p className="mt-12 text-[0.7rem] font-semibold uppercase tracking-[0.34em] text-muted-foreground">
-          © 2026 · Brijes Pansuriya
-        </p>
+        <Reveal delay={0.2}>
+          <div className="mt-14 flex flex-col items-center gap-3">
+            <Magnetic strength={0.3}>
+              <img
+                src={JD_SIGN}
+                alt="Signature of Brijes Pansuriya"
+                className="sig-float h-auto w-56 select-none opacity-90 transition-opacity duration-300 hover:opacity-100 md:w-64"
+                draggable={false}
+              />
+            </Magnetic>
+          </div>
+        </Reveal>
       </div>
     </footer>
   );

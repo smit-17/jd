@@ -12,15 +12,17 @@ const images = [
 
 export function Hero() {
   return (
-    <section className="relative mx-auto max-w-[1400px] px-6 pb-24 pt-6 md:px-12 md:pt-8">
+    <section className="relative mx-auto max-w-[1400px] overflow-x-clip px-6 pb-20 pt-6 md:px-12 md:pt-8">
       <header className="relative z-30 flex items-center justify-between text-forest" style={{ fontSize: "13px", letterSpacing: "3px" }}>
-        <span className="font-semibold uppercase">Presenting</span>
+        <span className="font-semibold uppercase">Chapter</span>
         <span className="font-semibold uppercase">Bio Data</span>
       </header>
 
       <div className="mt-12 grid items-center gap-12 lg:mt-16 lg:grid-cols-[0.9fr_1.1fr]">
         <Reveal y={40} delay={0.15}>
-          <PhotoCarousel images={images} />
+          <div className="float-mobile [will-change:transform]">
+            <PhotoCarousel images={images} />
+          </div>
         </Reveal>
 
         <div className="relative">
