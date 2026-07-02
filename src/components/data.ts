@@ -15,7 +15,8 @@ export const profile = {
   occupation: {
     role: "CEO & Owner at",
     company: "LEPDO Diamonds & Jewelry",
-    badges: ["Entrepreneur", "Business Owner", "Diamond Expert", "BNI Member"],
+    badges: ["Entrepreneur", "Business Owner", "Diamond Expert"],
+    website: "https://lepdo.com",
   },
   hobbies: ["Travel", "Fitness", "Networking", "Astrology", "Designing"],
   family: {

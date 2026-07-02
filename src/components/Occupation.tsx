@@ -54,6 +54,7 @@ export function Occupation() {
                   transition={{ duration: 2, ease: "easeInOut" }}
                 />
               </svg>
+
             </div>
 
             <div className="flex flex-col justify-center gap-4">
@@ -65,7 +66,20 @@ export function Occupation() {
                   </div>
                 </Reveal>
               ))}
+              <Reveal delay={profile.occupation.badges.length * 0.1} y={16}>
+                <a
+                  href={profile.occupation.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover-lift group flex items-center gap-4 rounded-full border border-gold/60 bg-gold/10 px-6 py-4 backdrop-blur-sm transition-all duration-500 hover:border-gold hover:bg-gold/20"
+                >
+                  <span className="h-2 w-2 rotate-45 bg-gold" />
+                  <span className="font-display text-lg font-semibold tracking-wide text-cream">Visit LEPDO</span>
+                  <span className="ml-auto transition-transform duration-500 group-hover:translate-x-1">→</span>
+                </a>
+              </Reveal>
             </div>
+
           </div>
         </div>
       </Reveal>
