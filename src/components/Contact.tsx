@@ -164,12 +164,9 @@ export function ThankYou() {
             </Reveal>
           ))}
         </div>
-
-        <Reveal delay={0.2}>
           <div className="mt-14 flex flex-col items-center gap-3">
              <span>@Brijes_JD</span>
           </div>
-        </Reveal>
       </div>
     </footer>
   );
