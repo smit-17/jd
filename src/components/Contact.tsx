@@ -167,14 +167,7 @@ export function ThankYou() {
 
         <Reveal delay={0.2}>
           <div className="mt-14 flex flex-col items-center gap-3">
-            <Magnetic strength={0.3}>
-              <img
-                src={JD_SIGN}
-                alt="Signature of Brijes Pansuriya"
-                className="sig-float h-auto w-56 select-none opacity-90 transition-opacity duration-300 hover:opacity-100 md:w-64"
-                draggable={false}
-              />
-            </Magnetic>
+             <span>@Brijes_JD</span>
           </div>
         </Reveal>
       </div>
