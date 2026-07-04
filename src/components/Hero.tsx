@@ -4,7 +4,7 @@ import { PhotoCarousel } from "./PhotoCarousel";
 import { profile } from "./data";
 import Image_2 from "../assets/Image_2.jpg";
 import Image_4 from "../assets/Image_4.jpg";
-import Image_5 from "../assets/Image_5.jpg";
+import Image_5 from "../assets/Image_5.jpeg";
 
 const images = [
   { src: Image_2, alt: "Brijes Pansuriya at the LEPDO office" },
