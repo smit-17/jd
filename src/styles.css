@@ -129,11 +129,30 @@
   from { stroke-dashoffset: 1000; }
   to { stroke-dashoffset: 0; }
 }
-@keyframes particle-rise {
-  0% { transform: translateY(0) scale(1); opacity: 0; }
-  10% { opacity: 0.9; }
-  90% { opacity: 0.6; }
-  100% { transform: translateY(-160px) scale(0.4); opacity: 0; }
+@keyframes bubble-rise {
+  0% {
+    transform: translate3d(0, 0, 0) scale(var(--start-scale, 0.55));
+    opacity: 0;
+  }
+  8% {
+    opacity: var(--bubble-opacity, 0.4);
+  }
+  30% {
+    transform: translate3d(var(--drift-start, 0px), calc(var(--rise) * 0.28), 0) scale(1);
+  }
+  55% {
+    transform: translate3d(var(--drift-mid, 0px), calc(var(--rise) * 0.58), 0) scale(1.06);
+  }
+  80% {
+    transform: translate3d(var(--drift-end, 0px), calc(var(--rise) * 0.88), 0) scale(1.02);
+  }
+  93% {
+    opacity: calc(var(--bubble-opacity, 0.4) * 0.65);
+  }
+  100% {
+    transform: translate3d(var(--drift-end, 0px), var(--rise), 0) scale(var(--end-scale, 0.35));
+    opacity: 0;
+  }
 }
 @keyframes shimmer-text {
   0% { background-position: 0% 50%; }
@@ -238,4 +257,123 @@
   .float-mobile {
     animation: card-float 6s ease-in-out infinite;
   }
+}
+
+/* ---------- Advanced motion additions ---------- */
+@keyframes letter-drift {
+  0%, 100% { transform: translateY(0) rotate(-0.6deg); }
+  50% { transform: translateY(-0.1em) rotate(0.6deg); }
+}
+@keyframes breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.012); }
+}
+@keyframes ring-pulse {
+  0% { transform: scale(1); opacity: 0.55; }
+  70% { transform: scale(1.35); opacity: 0; }
+  100% { transform: scale(1.35); opacity: 0; }
+}
+@keyframes word-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(-0.8deg); }
+  50% { transform: translate3d(10px, -12px, 0) rotate(0.8deg); }
+}
+
+.letter-drift {
+  display: inline-block;
+  animation: letter-drift 5.5s ease-in-out infinite;
+  will-change: transform;
+}
+
+.breathe {
+  animation: breathe 7s ease-in-out infinite;
+  will-change: transform;
+}
+
+.ring-pulse::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  border: 1px solid var(--gold);
+  animation: ring-pulse 2.8s ease-out infinite;
+}
+
+.word-drift {
+  animation: word-drift 11s ease-in-out infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .letter-float,
+  .letter-drift,
+  .word-drift,
+  .breathe,
+  .sig-float,
+  .float-mobile,
+  .float-slow,
+  .float-slower,
+  .spin-slow,
+  .texture-bg,
+  .ring-pulse::before {
+    animation: none !important;
+  }
+  * {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---------- Production performance tuning ---------- */
+/* Promote continuously animated layers once, and keep them composited. */
+.letter-float,
+.letter-drift,
+.word-drift,
+.breathe,
+.float-mobile,
+.float-slow,
+.float-slower,
+.spin-slow,
+.bubble {
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* Lite mode: lower-power / mobile devices keep the experience at reduced
+   intensity (softer amplitude, slower loops, cheaper blurs). */
+.perf-lite .float-slow,
+.perf-lite .float-slower,
+.perf-lite .word-drift,
+.perf-lite .letter-drift,
+.perf-lite .breathe {
+  animation-duration: 16s;
+}
+.perf-lite .word-drift,
+.perf-lite .letter-drift {
+  animation-timing-function: ease-in-out;
+}
+.perf-lite .texture-bg {
+  animation-duration: 80s;
+}
+.perf-lite .spin-slow {
+  animation-duration: 110s;
+}
+.perf-lite .ring-pulse::before {
+  animation-duration: 4.2s;
+}
+.perf-lite .blur-\[90px\],
+.perf-lite .blur-2xl {
+  filter: blur(28px);
+}
+
+/* Lite mode: fewer, slower, unblurred bubbles to keep motion smooth. */
+.perf-lite .bubble {
+  animation-duration: 22s;
+}
+.perf-lite .bubble:nth-child(n + 13) {
+  display: none;
+}
+
+/* Avoid layout shift from late-loading gallery images. */
+img {
+  content-visibility: auto;
 }

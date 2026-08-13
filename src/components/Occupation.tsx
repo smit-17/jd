@@ -1,6 +1,8 @@
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import { Eyebrow, LetterReveal, Reveal } from "./Reveal";
+import { Parallax, Spotlight } from "./Motion";
 import { profile } from "./data";
+
 
 function DiamondPattern() {
   return (
@@ -24,7 +26,7 @@ export function Occupation() {
   return (
     <section className="relative mx-auto max-w-[1400px] overflow-x-clip px-6 py-16 md:px-12">
       <Reveal>
-        <div className="relative overflow-hidden rounded-3xl bg-forest px-6 py-14 text-cream md:px-14 md:py-20">
+        <Spotlight className="relative overflow-hidden rounded-3xl bg-forest px-6 py-14 text-cream md:px-14 md:py-20">
           <DiamondPattern />
           {/* glow */}
           <div
@@ -34,12 +36,21 @@ export function Occupation() {
           />
 
           <div className="relative grid gap-12 lg:grid-cols-[1.1fr_0.9fr]">
-            <div>
+            <div style={{ perspective: "900px" }}>
               <Eyebrow>Occupation</Eyebrow>
-              <h2 className="mt-5 font-display text-[clamp(2.2rem,5.5vw,4.2rem)] font-black leading-[0.95] tracking-[-0.02em]">
-                <span className="block">CEO &amp; Owner at</span>
-                <span className="gold-gradient block">{profile.occupation.company}</span>
-              </h2>
+              <motion.h2
+                className="mt-5 font-display text-[clamp(2.2rem,5.5vw,4.2rem)] font-black leading-[0.95] tracking-[-0.02em] [transform-style:preserve-3d]"
+                initial={{ rotateX: 12, y: 24, opacity: 0 }}
+                whileInView={{ rotateX: 0, y: 0, opacity: 1 }}
+                viewport={{ once: true, margin: "-10% 0px" }}
+                transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <span className="block overflow-hidden">
+                  <LetterReveal lines={["CEO & Owner at"]} />
+                </span>
+                <span className="gold-gradient breathe block">{profile.occupation.company}</span>
+              </motion.h2>
+
 
               {/* animated line drawing */}
               <svg className="mt-8 h-12 w-full max-w-md" viewBox="0 0 400 40" fill="none">
@@ -81,7 +92,8 @@ export function Occupation() {
             </div>
 
           </div>
-        </div>
+        </Spotlight>
+
       </Reveal>
     </section>
   );
@@ -101,28 +113,44 @@ const styleFor = (i: number) => {
 const aligns = ["justify-start", "justify-end", "justify-center", "justify-end", "justify-start"];
 
 export function Hobbies() {
+  const reduced = useReducedMotion();
   return (
     <section className="relative mx-auto flex min-h-[88vh] max-w-[1400px] flex-col justify-center overflow-x-clip px-6 py-20 md:min-h-0 md:py-20 md:px-12">
       <Eyebrow>Interests</Eyebrow>
       <div className="mt-12 flex flex-1 flex-col justify-center space-y-10 md:mt-10 md:flex-none md:space-y-4">
         {profile.hobbies.map((h, i) => (
-          <Reveal key={h} delay={i * 0.06} y={36}>
-            <motion.div
-              className={`flex ${aligns[i % aligns.length]}`}
-              animate={{ y: [0, i % 2 === 0 ? -16 : 16, 0] }}
-              transition={{ duration: 5 + i, ease: "easeInOut", repeat: Infinity }}
-            >
-              <span
-                className={`lux-line cursor-default font-display uppercase leading-[0.9] tracking-[0.01em] transition-all duration-500 hover:tracking-[0.04em] ${styleFor(
-                  i,
-                )}`}
+          <Parallax key={h} speed={i % 2 === 0 ? -44 : 34} mobileFactor={0.3}>
+            <Reveal delay={i * 0.06} y={36}>
+              <motion.div
+                className={`flex ${aligns[i % aligns.length]}`}
+                animate={
+                  reduced
+                    ? undefined
+                    : {
+                        y: [0, i % 2 === 0 ? -14 : 14, 0],
+                        x: [0, i % 2 === 0 ? 8 : -8, 0],
+                        rotate: [-0.8, 0.8, -0.8],
+                      }
+                }
+                transition={{ duration: 9 + i * 1.5, ease: "easeInOut", repeat: Infinity }}
+                style={{ willChange: "transform" }}
               >
-                {h}
-              </span>
-            </motion.div>
-          </Reveal>
+                <motion.span
+                  whileHover={reduced ? undefined : { scale: 1.04 }}
+                  transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                  className={`lux-line inline-block cursor-default font-display uppercase leading-[0.9] tracking-[0.01em] transition-all duration-500 hover:tracking-[0.04em] ${styleFor(
+                    i,
+                  )}`}
+                  style={{ textShadow: "0 14px 40px color-mix(in oklab, var(--forest) 12%, transparent)" }}
+                >
+                  {h}
+                </motion.span>
+              </motion.div>
+            </Reveal>
+          </Parallax>
         ))}
       </div>
     </section>
+
   );
 }

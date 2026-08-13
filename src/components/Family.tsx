@@ -1,4 +1,6 @@
+import { motion } from "motion/react";
 import { Eyebrow, LetterReveal, Reveal } from "./Reveal";
+import { Parallax } from "./Motion";
 import { profile } from "./data";
 
 function Field({ label, value, sub, dark }: { label: string; value: string; sub?: string; dark?: boolean }) {
@@ -24,14 +26,21 @@ export function Family() {
         className="float-slower absolute right-[-6rem] top-10 h-80 w-80 rounded-full blur-3xl"
         style={{ background: "radial-gradient(circle, color-mix(in oklab, var(--gold) 26%, transparent), transparent 70%)" }}
       />
+      <div
+        aria-hidden
+        className="float-slow absolute left-[-4rem] bottom-6 h-64 w-64 rounded-full blur-3xl"
+        style={{ background: "radial-gradient(circle, color-mix(in oklab, var(--gold) 16%, transparent), transparent 70%)" }}
+      />
       <div className="relative mx-auto max-w-[1400px] px-6 md:px-12">
         <Eyebrow>Chapter 03</Eyebrow>
 
         {/* Block 1 — JD Family */}
         <div className="mt-10 grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
-          <h2 className="font-display text-[clamp(3rem,9vw,7rem)] font-black leading-[0.82] tracking-[-0.02em] text-cream">
-            <LetterReveal lines={["JD", "Family"]} />
-          </h2>
+          <Parallax speed={-46}>
+            <h2 className="font-display text-[clamp(3rem,9vw,7rem)] font-black leading-[0.82] tracking-[-0.02em] text-cream">
+              <LetterReveal lines={["JD", "Family"]} />
+            </h2>
+          </Parallax>
           <div className="grid gap-x-12 gap-y-9 sm:grid-cols-2 lg:pt-3">
             <Reveal><Field dark label="Native" value={jd.native} /></Reveal>
             <Reveal delay={0.05}><Field dark label="Father" value={jd.father.name} sub={jd.father.note} /></Reveal>
@@ -40,9 +49,13 @@ export function Family() {
           </div>
         </div>
 
-        <Reveal>
-          <div className="my-16 h-px w-full bg-gradient-to-r from-gold/0 via-gold/40 to-gold/0" />
-        </Reveal>
+        <motion.div
+          className="my-16 h-px w-full origin-center bg-gradient-to-r from-gold/0 via-gold/40 to-gold/0"
+          initial={{ scaleX: 0, opacity: 0 }}
+          whileInView={{ scaleX: 1, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
+        />
 
         {/* Block 2 — Maternal Family (separate, three-column layout) */}
         <div className="rounded-3xl border border-gold/20 bg-cream/[0.04] p-8 backdrop-blur-sm md:p-12">
@@ -75,13 +88,38 @@ export function AboutMe() {
       <h2 className="mt-4 font-display text-[clamp(2.5rem,7vw,5rem)] font-black tracking-[-0.02em] text-ink">
         <LetterReveal lines={["About Me"]} />
       </h2>
-      <Reveal delay={0.2}>
-        <p className="relative mt-10 font-serif text-[clamp(1.4rem,3.2vw,2.4rem)] leading-[1.45] text-forest">
-          <span className="absolute -left-2 -top-6 font-serif text-5xl text-gold">&ldquo;</span>
-          {profile.about}
-          <span className="ml-1 font-serif text-5xl text-gold">&rdquo;</span>
-        </p>
-      </Reveal>
+      <div
+        aria-hidden
+        className="float-slower absolute left-1/2 top-1/2 -z-10 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl"
+        style={{ background: "radial-gradient(circle, color-mix(in oklab, var(--gold) 18%, transparent), transparent 70%)" }}
+      />
+      <motion.p
+        className="relative mt-10 font-serif text-[clamp(1.4rem,3.2vw,2.4rem)] leading-[1.45] text-forest"
+        initial={{ opacity: 0, y: 26, scale: 0.985 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        viewport={{ once: true, margin: "-10% 0px" }}
+        transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.25 }}
+      >
+        <motion.span
+          className="letter-drift absolute -left-2 -top-6 font-serif text-5xl text-gold"
+          initial={{ opacity: 0, scale: 0.6 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        >
+          &ldquo;
+        </motion.span>
+        {profile.about}
+        <motion.span
+          className="letter-drift ml-1 font-serif text-5xl text-gold"
+          initial={{ opacity: 0, scale: 0.6 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        >
+          &rdquo;
+        </motion.span>
+      </motion.p>
     </section>
   );
 }

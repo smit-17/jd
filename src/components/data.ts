@@ -4,13 +4,12 @@ export const profile = {
   myself: {
     name: "Brijes Pansuriya",
     dob: "11 · 06 · 2002",
-    height: "5'7\"",
+    height: "5'6\"",
     weight: "59 Kg",
   },
   education: [
-    { n: "01", title: "B.Com (Dropout)", sub: "DRB College, Surat" },
-    { n: "02", title: "Master in Diamond & Jewelry", sub: "Arihant Diamond Institute & ISGJ College" },
-    { n: "03", title: "Active BNI Member", sub: "BNI Quantum, Greater Surat" },
+    { n: "01", title: "Master in Diamond & Jewelry", sub: "Arihant Diamond Institute & ISGJ College" },
+    { n: "02", title: "Active BNI Member", sub: "Vice President of BNI Quantum, Surat" },
   ],
   occupation: {
     role: "CEO & Owner at",
@@ -18,7 +17,8 @@ export const profile = {
     badges: ["Entrepreneur", "Business Owner", "Diamond Expert"],
     website: "https://lepdo.com",
   },
-  hobbies: ["Travel", "Fitness", "Networking", "Astrology", "Designing"],
+  hobbies: ["Travel", "Fitness", "Networking", "Fashion", "Designing"],
+
   family: {
     jd: {
       native: "Badanpur, Ta. Kukavav, Dist. Amreli",
@@ -42,8 +42,8 @@ export const profile = {
     address: ["D/1003 Apple Heights, Opp. Westside,", "Mota Varachha, Surat"],
   },
   socials: {
-    instagram: "https://www.instagram.com/brijes_jd",
-    linkedin: "https://www.linkedin.com/in/brijes-pansuriya",
+    instagram: "https://www.instagram.com/brijes_diamond_advisor?igsh=NHc2ZHhma3BzeGVh",
+    linkedin: "https://linkedin.com",
     website: "https://brijespansuriya.com",
   },
 };
