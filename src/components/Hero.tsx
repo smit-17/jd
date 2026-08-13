@@ -10,10 +10,10 @@ import gallery3 from "@/assets/bioimage3.jpeg";
 import gallery4 from "@/assets/bioimage4.jpeg";
 
 const images = [
-  { src: gallery1, alt: "Brijes Pansuriya in a black suit at a BNI Quantum event" },
-  { src: gallery2, alt: "Brijes Pansuriya portrait in a striped shirt" },
-  { src: gallery3, alt: "Brijes Pansuriya at the LEPDO office desk" },
-  { src: gallery4, alt: "Brijes Pansuriya speaking on stage at BNI Quantum" },
+  { src: gallery3, alt: "Brijes Pansuriya in a black suit at a BNI Quantum event" },
+  { src: gallery1, alt: "Brijes Pansuriya portrait in a striped shirt" },
+  { src: gallery4, alt: "Brijes Pansuriya at the LEPDO office desk" },
+  { src: gallery2, alt: "Brijes Pansuriya speaking on stage at BNI Quantum" },
 ];
 
 
