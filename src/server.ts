@@ -42,12 +42,25 @@ export default {
     try {
       const handler = await getServerEntry();
       const response = await handler.fetch(request, env, ctx);
-      return await normalizeCatastrophicSsrResponse(response);
+        let finalResponse = await normalizeCatastrophicSsrResponse(response);
+
+        const contentType = finalResponse.headers.get("content-type") ?? "";
+        if (contentType.includes("text/html")) {
+          const headers = new Headers(finalResponse.headers);
+          headers.set("Cache-Control", "no-cache, no-store, must-revalidate");
+          finalResponse = new Response(finalResponse.body, {
+            status: finalResponse.status,
+            statusText: finalResponse.statusText,
+            headers,
+          });
+        }
+
+        return finalResponse;
     } catch (error) {
       console.error(error);
       return new Response(renderErrorPage(), {
         status: 500,
-        headers: { "content-type": "text/html; charset=utf-8" },
+          headers: { "content-type": "text/html; charset=utf-8", "Cache-Control": "no-cache, no-store, must-revalidate" },
       });
     }
   },
