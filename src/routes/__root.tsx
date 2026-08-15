@@ -77,18 +77,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Brijes Pansuriya — Bio Data" },
+      { title: "Brijes Pansuriya — Bio Data | Family, Profession & More" },
       {
         name: "description",
         content:
-          "Meet Brijes • Building Dreams with Purpose.",
+          "Brijes Pansuriya's complete bio data — personal details, family background, education & profession as CEO of LEPDO Diamonds & Jewelry, Surat.",
       },
       { name: "robots", content: "noindex, nofollow" },
       { name: "author", content: "Brijes Pansuriya" },
-      { property: "og:title", content: "Brijes Pansuriya — Bio Data" },
+      { property: "og:title", content: "Brijes Pansuriya — Bio Data | Family, Profession & More" },
       {
         property: "og:description",
-        content: "Meet Brijes • Building Dreams with Purpose.",
+        content: "Brijes Pansuriya's complete bio data — personal details, family background, education & profession as CEO of LEPDO Diamonds & Jewelry, Surat.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
