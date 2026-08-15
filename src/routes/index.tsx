@@ -11,16 +11,16 @@ import { Contact, ThankYou } from "@/components/Contact";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Brijes Pansuriya — A Premium Introduction" },
+      { title: "Brijes Pansuriya — Bio Data | Family, Profession & More" },
       {
         name: "description",
         content:
-          "Brijes Pansuriya — CEO & Owner at LEPDO Diamonds & Jewelry. A luxury editorial introduction.",
+          "Brijes Pansuriya's complete bio data — personal details, family background, education & profession as CEO of LEPDO Diamonds & Jewelry, Surat.",
       },
-      { property: "og:title", content: "Brijes Pansuriya — A Premium Introduction" },
+      { property: "og:title", content: "Brijes Pansuriya — Bio Data | Family, Profession & More" },
       {
         property: "og:description",
-        content: "CEO & Owner at LEPDO Diamonds & Jewelry. A luxury editorial personal introduction.",
+        content: "Brijes Pansuriya's complete bio data — personal details, family background, education & profession as CEO of LEPDO Diamonds & Jewelry, Surat.",
       },
     ],
   }),
