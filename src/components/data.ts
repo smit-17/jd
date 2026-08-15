@@ -17,7 +17,7 @@ export const profile = {
     badges: ["Entrepreneur", "Business Owner", "Diamond Expert"],
     website: "https://lepdo.com",
   },
-  hobbies: ["Travel", "Fitness", "Networking", "Fashion", "Designing"],
+  hobbies: ["Travel", "Fashion", "Networking" ,"Fitness", "Designing"],
 
   family: {
     jd: {
