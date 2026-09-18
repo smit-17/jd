@@ -83,7 +83,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content:
           "Brijes Pansuriya's complete bio data — personal details, family background, education & profession as CEO of LEPDO Diamonds & Jewelry, Surat.",
       },
-      { name: "robots", content: "noindex, nofollow" },
+      { name: "robots", content: "noindex" },
       { name: "author", content: "Brijes Pansuriya" },
       { property: "og:title", content: "Brijes Pansuriya — Bio Data | Family, Profession & More" },
       {
