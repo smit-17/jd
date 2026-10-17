@@ -95,10 +95,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "shortcut icon", href: "https://www.brijespansuriya.com/favicon.ico" },
-      { rel: "icon", type: "image/png", sizes: "256x256", href: "https://www.brijespansuriya.com/favicon.png" },
-      { rel: "icon", type: "image/x-icon", href: "https://www.brijespansuriya.com/favicon.ico" },
-      { rel: "apple-touch-icon", sizes: "180x180", href: "https://www.brijespansuriya.com/apple-touch-icon.png" },
+      { rel: "shortcut icon", href: "/favicon.ico" },
+      { rel: "icon", type: "image/png", sizes: "256x256", href: "/favicon-dark.png", media: "(prefers-color-scheme: light)" },
+      { rel: "icon", type: "image/png", sizes: "256x256", href: "/favicon-light.png", media: "(prefers-color-scheme: dark)" },
+      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+      { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
@@ -129,6 +130,37 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+
+  useEffect(() => {
+    const updateFavicon = () => {
+      const darkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const faviconHref = darkMode ? "/favicon-light.png" : "/favicon-dark.png";
+
+      document
+        .querySelectorAll('link[rel="icon"], link[rel="shortcut icon"]')
+        .forEach((link) => {
+          link.setAttribute("href", faviconHref);
+        });
+
+      const appleTouchIcon = document.querySelector('link[rel="apple-touch-icon"]');
+      if (appleTouchIcon) {
+        appleTouchIcon.setAttribute("href", faviconHref);
+      }
+    };
+
+    updateFavicon();
+
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const onChange = () => updateFavicon();
+
+    if (typeof mediaQuery.addEventListener === "function") {
+      mediaQuery.addEventListener("change", onChange);
+      return () => mediaQuery.removeEventListener("change", onChange);
+    }
+
+    mediaQuery.addListener(onChange);
+    return () => mediaQuery.removeListener(onChange);
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
