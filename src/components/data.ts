@@ -5,7 +5,7 @@ export const profile = {
     name: "Brijes Pansuriya",
     dob: "11 · 06 · 2002",
     height: "5'6\"",
-    weight: "59 Kg",
+    weight: "62 Kg",
   },
   education: [
     { n: "01", title: "Master in Diamond & Jewelry", sub: "Arihant Diamond Institute & ISGJ College" },
@@ -43,7 +43,7 @@ export const profile = {
   },
   socials: {
     instagram: "https://www.instagram.com/brijes_diamond_advisor?igsh=NHc2ZHhma3BzeGVh",
-    linkedin: "https://linkedin.com",
+    linkedin: "https://linkedin.com/in/brijes-pansuriya/",
     website: "https://brijespansuriya.com",
   },
 };
